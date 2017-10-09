@@ -44,6 +44,6 @@ def correct(bot, update):
     headers = {'User-Agent': 'Mozilla/5.0'}
     r = requests.get('https://www.google.com/search?q='+ search, headers)
     soup = BeautifulSoup(r.text, "html.parser")
-    result = soup.find('a',{'class': 'spell'}).find('i').text
+    result = soup.find('a',{'class': 'spell'}).text
     if result != search:
         update.message.reply_text(result)

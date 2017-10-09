@@ -40,10 +40,11 @@ def images(bot, update):
 
 def correct(bot, update):
     search = update.message.text
+    user = update.message.from_user.username
     logger.info("Auto correct")
     headers = {'User-Agent': 'Mozilla/5.0'}
     r = requests.get('https://www.google.com/search?q='+ search, headers)
     soup = BeautifulSoup(r.text, "html.parser")
     result = soup.find('a',{'class': 'spell'})
     if not result is None:
-        update.message.reply_text(result.text)
+        update.message.reply_text(user+' 的意思也許是\n'++result.text)

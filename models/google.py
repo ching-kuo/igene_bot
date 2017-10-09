@@ -36,4 +36,4 @@ def images(bot, update):
     r = requests.get('https://www.google.com/search?tbm=isch&q='+ search, headers)
     soup = BeautifulSoup(r.text, "html.parser")
     images = [a['src'] for a in soup.find_all("img", {"src": re.compile("gstatic.com")})]
-    update.message.reply_text(images)
+    update.message.reply_text(images[0])

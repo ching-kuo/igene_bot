@@ -11,3 +11,7 @@ def girlfriend(bot, update):
 def sister(bot, update):
     logger.info("sister called")
     update.message.reply_text(u"醒醒吧你沒有妹妹")
+
+def python_better(bot, update):
+    logger.info("python or js called")
+    update.message.reply_text(u"Python is better than Javascript")

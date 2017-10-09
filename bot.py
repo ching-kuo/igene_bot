@@ -4,6 +4,7 @@ from telegram.ext import Updater
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, RegexHandler,
                           ConversationHandler)
 from bs4 import BeautifulSoup
+from ConfigParser import RawConfigParser
 import logging
 import re
 import requests
@@ -21,7 +22,7 @@ def google(bot, update):
     logger.info("Google %s" %search)
     r = requests.get('https://www.google.com/search?q='+ search)
     soup = BeautifulSoup(r.text, "html.parser")
-    result = soup.find('cite').text
+    result = soup.find('h3', {'class': 'r'}).find('a').attrs['href'].strip()
     update.message.reply_text(result)
 
 def girlfriend(bot, update):
@@ -37,7 +38,11 @@ def no_money(bot, update):
     update.message.reply_sticker(sticker='CAADBQADTgADVRXrCVFQ913jCk08Ag')
 
 def main():
-    updater = Updater(token='445707953:AAF9-qAB6zq4T7_B7_tWdywAfwBQJp0QMMA')
+    cfg = RawConfigParser()
+    with open('config', 'rb') as fp:
+        cfg.readfp(fp, 'config')
+    token = cfg.get('auth', 'token')
+    updater = Updater(token)
     dp = updater.dispatcher
     dp.add_handler(CommandHandler('start', start))
     dp.add_handler(RegexHandler('^(?i)google .*', google))

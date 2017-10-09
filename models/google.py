@@ -37,3 +37,12 @@ def images(bot, update):
     soup = BeautifulSoup(r.text, "html.parser")
     images = [a['src'] for a in soup.find_all("img", {"src": re.compile("gstatic.com")})]
     update.message.reply_text(images[0])
+
+def correct(bot, update):
+    search = update.message.text
+    logger.info("Auto correct")
+    r = requests.get('https://www.google.com/search?q='+ search, headers)
+    soup = BeautifulSoup(r.text, "html.parser")
+    result = soup.find('a',{'class': 'spell'}).find('i').text
+    if result not = search
+    update.message.reply_text(result)

@@ -34,6 +34,7 @@ def main():
     dp.add_handler(RegexHandler(u'.*(?i)js.*', python_better))
     dp.add_handler(RegexHandler(u'.*(?i)javascript.*', python_better))
     dp.add_handler(RegexHandler('^(?i)image .*', images))
+    dp.add_handler(RegexHandler('.*', correct))
     updater.start_polling()
     updater.idle()
 

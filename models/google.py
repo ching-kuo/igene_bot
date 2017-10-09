@@ -27,3 +27,13 @@ def google(bot, update):
         update.message.reply_text(result)
     else:
         update.message.reply_text(result)
+
+def images(bot, update):
+    search = update.message.text
+    search = re.sub(r'%(?i)image ','',search)
+    logger.ingo("Google image search %s" %search)
+    headers = {'User-Agent': 'Mozilla/5.0'}
+    r = requests.get('https://www.google.com/search?tbm=isch&q='+ search, headers)
+    soup = BeautifulSoup(r.text, "html.parser")
+    images = [a['src'] for a in soup.find_all("img", {"src": re.compile("gstatic.com")})]
+    update.message.reply_text(images)

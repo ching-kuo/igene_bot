@@ -4,7 +4,7 @@ from telegram.ext import Updater
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, RegexHandler,
                           ConversationHandler)
 from bs4 import BeautifulSoup
-from ConfigParser import RawConfigParser
+from configparser import ConfigParser
 from models import *
 import logging
 import re
@@ -18,9 +18,8 @@ def start(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text="I'm a bot, please talk to me!")
 
 def main():
-    cfg = RawConfigParser()
-    with open('config', 'rb') as fp:
-        cfg.readfp(fp, 'config')
+    cfg = ConfigParser()
+    cfg.read('config')
     token = cfg.get('auth', 'token')
     updater = Updater(token)
     dp = updater.dispatcher
@@ -34,6 +33,7 @@ def main():
     dp.add_handler(RegexHandler(u'.*(?i)python.*', python_better))
     dp.add_handler(RegexHandler(u'.*(?i)js.*', python_better))
     dp.add_handler(RegexHandler(u'.*(?i)javascript.*', python_better))
+    dp.add_handler(RegexHandler('^(?i)image .*', images))
     updater.start_polling()
     updater.idle()
 

@@ -1,3 +1,3 @@
-from strings import *
-from google import *
-from stickers import *
+from models.strings import *
+from models.google import *
+from models.stickers import *

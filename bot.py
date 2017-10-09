@@ -58,7 +58,7 @@ def main():
     dp.add_handler(RegexHandler(u'.*妹妹.*', sister))
     dp.add_handler(RegexHandler(u'.*沒錢.*', no_money))
     dp.add_handler(RegexHandler(u'.*不行.*', i_think_no))
-    dp.add_handler(RegexHandler(u'.*可以.*', i_think_yes))
+    dp.add_handler(RegexHandler(u'.*可以.*', i_think_ok))
     updater.start_polling()
     updater.idle()
 

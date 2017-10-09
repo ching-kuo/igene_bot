@@ -41,6 +41,7 @@ def images(bot, update):
 def correct(bot, update):
     search = update.message.text
     logger.info("Auto correct")
+    headers = {'User-Agent': 'Mozilla/5.0'}
     r = requests.get('https://www.google.com/search?q='+ search, headers)
     soup = BeautifulSoup(r.text, "html.parser")
     result = soup.find('a',{'class': 'spell'}).find('i').text

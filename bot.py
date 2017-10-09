@@ -22,7 +22,7 @@ def google(bot, update):
     logger.info("Google %s" %search)
     r = requests.get('https://www.google.com/search?q='+ search)
     soup = BeautifulSoup(r.text, "html.parser")
-    result = soup.find('h3', {'class': 'r'}).find('a').attrs['href'].strip()
+    result = soup.find('h3', {'class': 'r'}).find('a').attrs['href']
     update.message.reply_text(result)
 
 def girlfriend(bot, update):

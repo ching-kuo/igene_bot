@@ -3,6 +3,11 @@ from bs4 import BeautifulSoup
 import logging
 import re
 import requests
+try:
+    import urlparse as parse
+except ImportError:
+    from urllib import parse
+
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)

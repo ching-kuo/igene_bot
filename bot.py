@@ -41,6 +41,10 @@ def i_think_no(bot, update):
     logger.info("nooooooo")
     update.message.reply_sticker(sticker='CAADBQADUAADVRXrCVXDWs7XUQUfAg')
 
+def i_think_ok(bot, update):
+    logger.info("okkkkkk")
+    update.message.reply_sticker(sticker='CAADBQADTwADVRXrCc2qZPCSdFYqAg')
+
 def main():
     cfg = RawConfigParser()
     with open('config', 'rb') as fp:
@@ -54,6 +58,7 @@ def main():
     dp.add_handler(RegexHandler(u'.*妹妹.*', sister))
     dp.add_handler(RegexHandler(u'.*沒錢.*', no_money))
     dp.add_handler(RegexHandler(u'.*不行.*', i_think_no))
+    dp.add_handler(RegexHandler(u'.*可以.*', i_think_yes))
     updater.start_polling()
     updater.idle()
 

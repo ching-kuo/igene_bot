@@ -37,6 +37,10 @@ def no_money(bot, update):
     logger.info("no money called")
     update.message.reply_sticker(sticker='CAADBQADTgADVRXrCVFQ913jCk08Ag')
 
+def i_think_no(bot, update):
+    logger.info("nooooooo")
+    update.message.reply_sticker(sticker='CAADBQADUAADVRXrCVXDWs7XUQUfAg')
+
 def main():
     cfg = RawConfigParser()
     with open('config', 'rb') as fp:
@@ -49,6 +53,7 @@ def main():
     dp.add_handler(RegexHandler(u'.*女朋友.*', girlfriend))
     dp.add_handler(RegexHandler(u'.*妹妹.*', sister))
     dp.add_handler(RegexHandler(u'.*沒錢.*', no_money))
+    dp.add_handler(RegexHandler(u'.*不行.*', i_think_no))
     updater.start_polling()
     updater.idle()
 

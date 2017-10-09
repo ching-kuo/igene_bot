@@ -47,4 +47,4 @@ def correct(bot, update):
     soup = BeautifulSoup(r.text, "html.parser")
     result = soup.find('a',{'class': 'spell'})
     if not result is None:
-        update.message.reply_text(user+' 的意思也許是\n'++result.text)
+        update.message.reply_text(user+' 的意思也許是\n'+result.text)

@@ -8,6 +8,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 def google(bot, update):
+    headers = {'User-Agent': 'Mozilla/5.0'}
     search = update.message.text
     search = re.sub(r'^(?i)google ','',search)
     logger.info("Google %s" %search)

@@ -44,5 +44,5 @@ def correct(bot, update):
     r = requests.get('https://www.google.com/search?q='+ search, headers)
     soup = BeautifulSoup(r.text, "html.parser")
     result = soup.find('a',{'class': 'spell'}).find('i').text
-    if result not = search
-    update.message.reply_text(result)
+    if result != search:
+        update.message.reply_text(result)

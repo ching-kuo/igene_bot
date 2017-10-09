@@ -5,6 +5,7 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, Rege
                           ConversationHandler)
 from bs4 import BeautifulSoup
 from ConfigParser import RawConfigParser
+from models import *
 import logging
 import re
 import requests
@@ -15,35 +16,6 @@ logger = logging.getLogger(__name__)
 
 def start(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text="I'm a bot, please talk to me!")
-
-def google(bot, update):
-    search = update.message.text
-    search = re.sub(r'^(?i)google ','',search)
-    logger.info("Google %s" %search)
-    r = requests.get('https://www.google.com/search?q='+ search)
-    soup = BeautifulSoup(r.text, "html.parser")
-    result = soup.find('h3', {'class': 'r'}).find('a').attrs['href']
-    update.message.reply_text(result)
-
-def girlfriend(bot, update):
-    logger.info("girlfriend called")
-    update.message.reply_text(u"醒醒吧你沒有女友")
-
-def sister(bot, update):
-    logger.info("sister called")
-    update.message.reply_text(u"醒醒吧你沒有妹妹")
-    
-def no_money(bot, update):
-    logger.info("no money called")
-    update.message.reply_sticker(sticker='CAADBQADTgADVRXrCVFQ913jCk08Ag')
-
-def i_think_no(bot, update):
-    logger.info("nooooooo")
-    update.message.reply_sticker(sticker='CAADBQADUAADVRXrCVXDWs7XUQUfAg')
-
-def i_think_ok(bot, update):
-    logger.info("okkkkkk")
-    update.message.reply_sticker(sticker='CAADBQADTwADVRXrCc2qZPCSdFYqAg')
 
 def main():
     cfg = RawConfigParser()

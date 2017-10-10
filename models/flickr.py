@@ -18,7 +18,7 @@ def images(bot, update):
     logger.info("Flickr image search %s" %search)
     flickr = flickrapi.FlickrAPI(api_key, secret)
     photos = json.loads(flickr.photos.search(text=search, per_page="1", page="1", format="json").decode('utf8'))
-    if len(photos['photos']['photo']) == 0:
+    if not photos['photos']['photo']:
         print('Flickr找不到啦，幹！')
     else:
         photo = photos['photos']['photo'][0]

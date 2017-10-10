@@ -22,7 +22,7 @@ def images(bot, update):
     selected_image_num = random.randint(0, len(photos['photos']['photo']))
 
     if not photos['photos']['photo']:
-        print('Flickr找不到啦，幹！')
+        update.message.reply_text('Flickr找不到啦，幹！')
     else:
         photo = photos['photos']['photo'][selected_image_num]
         image = 'https://farm{}.staticflickr.com/{}/{}_{}.jpg'.format(photo['farm'], photo['server'], photo['id'], photo['secret'])

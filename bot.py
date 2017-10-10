@@ -31,6 +31,7 @@ def main():
     dp.add_handler(RegexHandler(u'.*不行.*', i_think_no))
     dp.add_handler(RegexHandler(u'天氣 .*', weather))
     dp.add_handler(RegexHandler(u'.*可以.*', i_think_ok))
+    dp.add_handler(RegexHandler(u'.*是我啦.*', wuyiulin))
     dp.add_handler(RegexHandler(u'.*(?i)python.*', python_better))
     dp.add_handler(RegexHandler(u'.*(?i)js.*', python_better))
     dp.add_handler(RegexHandler(u'.*(?i)javascript.*', python_better))

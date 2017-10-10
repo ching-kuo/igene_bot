@@ -19,7 +19,7 @@ def images(bot, update):
     flickr = flickrapi.FlickrAPI(api_key, secret)
     photos = json.loads(flickr.photos.search(text=search, per_page="1", page="1", format="json").decode('utf8'))
     if len(photos['photos']['photo']) == 0:
-        print('Flickr找不到啦，幹！')
+        update.message.reply_text('Flickr找不到啦，幹！')
     else:
         photo = photos['photos']['photo'][0]
         image = 'https://farm{}.staticflickr.com/{}/{}_{}.jpg'.format(photo['farm'], photo['server'], photo['id'], photo['secret'])

@@ -1,3 +1,5 @@
 bs4==0.0.1
 python-telegram-bot==8.0
 requests==2.18.4
+pyowm==2.7.1
+googletrans==2.2.0

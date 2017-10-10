@@ -29,6 +29,7 @@ def main():
     dp.add_handler(RegexHandler(u'.*妹妹.*', sister))
     dp.add_handler(RegexHandler(u'.*沒錢.*', no_money))
     dp.add_handler(RegexHandler(u'.*不行.*', i_think_no))
+    dp.add_handler(RegexHandler(u'天氣 .*', weather))
     dp.add_handler(RegexHandler(u'.*可以.*', i_think_ok))
     dp.add_handler(RegexHandler(u'.*(?i)python.*', python_better))
     dp.add_handler(RegexHandler(u'.*(?i)js.*', python_better))

@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 def google(bot, update):
     search = update.message.text
     search = re.sub(r'^(?i)google ','',search)
-    logger.info("Google search" + search)
+    logger.info("Google search " + search)
     header = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36'}
     url = 'https://www.google.com/search?q=' + quote(search)
     soup = BeautifulSoup(urlopen(Request(url, headers=header)), "html.parser")

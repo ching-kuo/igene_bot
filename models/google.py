@@ -16,7 +16,7 @@ def google(bot, update):
     search = re.sub(r'^(?i)google ','',search)
     logger.info("Google %s" %search)
     headers = {'User-Agent': 'Mozilla/5.0'}
-    r = requests.get('https://www.google.com/search?q='+ search, headers)
+    r = requests.get('https://www.google.com.tw/search?q='+ search, headers)
     soup = BeautifulSoup(r.text, "html.parser")
     result = soup.find('h3', {'class': 'r'}).find('a').attrs['href']
     result = urllib.parse.unquote(result)

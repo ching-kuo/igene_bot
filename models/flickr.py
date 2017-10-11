@@ -18,7 +18,7 @@ def images(bot, update):
     search = re.sub(r'%(?i)image ','',search)
     logger.info("Flickr image search %s" %search)
     flickr = flickrapi.FlickrAPI(api_key, secret)
-    photos = json.loads(flickr.photos.search(text=search, per_page="1", page="1", format="json").decode('utf8'))
+    photos = json.loads(flickr.photos.search(text=search, per_page="50", page="1", format="json").decode('utf8'))
     selected_image_num = random.randint(0, len(photos['photos']['photo']))
 
     if not photos['photos']['photo']:

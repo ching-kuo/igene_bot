@@ -17,14 +17,14 @@ def google(bot, update):
     search = update.message.text
     search = re.sub(r'^(?i)google ','',search)
     logger.info("Google search" + search)
-    headers = {'User-Agent': 'Mozilla/5.0'}
-    r = requests.get('https://www.google.com.tw/search?q='+ search, headers)
-    soup = BeautifulSoup(r.text, "html.parser")
+    header = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36'}
+    url = 'https://www.google.com/search?q=' + quote(search)
+    soup = BeautifulSoup(urlopen(Request(url, headers=header), "html.parser"))
     result = soup.find('h3', {'class': 'r'}).find('a').attrs['href']
     result = urllib.parse.unquote(result)
     if_http_start_regex = re.compile('^http')
     if_http_start = if_http_start_regex.match(str(result))
-    if if_http_start == None:
+    if if_http_start is None:
         remove_url_q_re = re.compile('^\/url\?q=')
         remove_url_sa_re = re.compile('\&sa.+')
         result = re.sub(remove_url_q_re, '', result)

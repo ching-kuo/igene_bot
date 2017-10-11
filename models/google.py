@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup
 from configparser import ConfigParser
+from urllib.request import urlopen, Request
+from urllib.parse   import quote
 import logging
 import re
 import requests
@@ -14,7 +16,7 @@ logger = logging.getLogger(__name__)
 def google(bot, update):
     search = update.message.text
     search = re.sub(r'^(?i)google ','',search)
-    logger.info("Google %s" %search)
+    logger.info("Google search" + search)
     headers = {'User-Agent': 'Mozilla/5.0'}
     r = requests.get('https://www.google.com.tw/search?q='+ search, headers)
     soup = BeautifulSoup(r.text, "html.parser")
@@ -41,3 +43,15 @@ def correct(bot, update):
     result = soup.find('a',{'class': 'spell'})
     if not result is None:
         update.message.reply_text(user+' 的意思也許是\n'+result.text)
+
+def g_image(bot, update):
+    search = update.message.text
+    search = re.sub(r'^(?i)google (?i)image ','',search)
+    logger.info('Google image search ' + search)
+    header = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36'}
+    url = 'https://www.google.com.tw/search?q='+ quote(search) +'&source=lnms&tbm=isch'
+    soup = BeautifulSoup(urlopen(Request(url, headers=header)),'html.parser')
+    data = soup.find('div',{'class':'rg_meta'})
+    link , Type =json.loads(data.text)["ou"]  ,json.loads(data.text)["ity"]
+    logger.info('sent image '+link)
+    update.message.reply_photo(link)

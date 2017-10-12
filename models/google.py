@@ -18,10 +18,12 @@ logger = logging.getLogger(__name__)
 def google(bot, update):
     search = update.message.text
     search = re.sub(r'^(?i)google ','',search)
-    logger.info("Google search " + search)
-    header = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36'}
+    logger.info("Google search" + search)
+    headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36'}
     url = 'https://www.google.com/search?q=' + quote(search)
-    soup = BeautifulSoup(urlopen(Request(url, headers=header)), "html.parser")
+    res = requests.get(url, headers = headers)
+    soup = BeautifulSoup(res.text, "html.parser")
+    text = soup.find('h3', {'class': 'r'}).find('a').text
     result = soup.find('h3', {'class': 'r'}).find('a').attrs['href']
     result = urllib.parse.unquote(result)
     if_http_start_regex = re.compile('^http')
@@ -31,9 +33,9 @@ def google(bot, update):
         remove_url_sa_re = re.compile('\&sa.+')
         result = re.sub(remove_url_q_re, '', result)
         result = re.sub(remove_url_sa_re, '', result)
-        update.message.reply_text(result)
+        update.message.reply_text(text + '\n' +result)
     else:
-        update.message.reply_text(result)
+        update.message.reply_text(text + '\n' +result)
 
 def correct(bot, update):
     search = update.message.text

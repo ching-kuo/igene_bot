@@ -26,6 +26,7 @@ def main():
     dp.add_handler(CommandHandler('start', start))
     dp.add_handler(RegexHandler(u'(?i)google (?i)image .*', g_image))
     dp.add_handler(RegexHandler('^(?i)google .*', google))
+    dp.add_handler(RegexHandler('^(?i)speak .*', tts))
     dp.add_handler(RegexHandler(u'.*女朋友.*', girlfriend))
     dp.add_handler(RegexHandler(u'.*妹妹.*', sister))
     dp.add_handler(RegexHandler(u'.*沒錢.*', no_money))

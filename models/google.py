@@ -3,12 +3,14 @@ from bs4 import BeautifulSoup
 from configparser import ConfigParser
 from urllib.request import urlopen, Request
 from urllib.parse   import quote
+from gtts import gTTS
 import logging
 import re
 import requests
 import urllib.parse
 import flickrapi
 import json
+import os
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -57,3 +59,15 @@ def g_image(bot, update):
     link , Type =json.loads(data.text)["ou"]  ,json.loads(data.text)["ity"]
     logger.info('sent image '+link)
     update.message.reply_photo(link)
+
+def tts(bot, update):
+    s_text = update.message.text
+    s_text = re.sub(r'^(?i)speak ','',s_text)
+    logger.info('Text to speech '+ s_text)
+    if re.findall(r'[\u4e00-\u9fff]+', s_text):
+        tts = gTTS(text=s_text, lang='zh-tw', slow=False)
+    else:
+        tts = gTTS(text=s_text, lang='en', slow=False)
+    tts.save(s_text+'.mp3')
+    update.message.reply_audio(audio=open((s_text+'.mp3'),'rb'))
+    os.remove(s_text+'.mp3')

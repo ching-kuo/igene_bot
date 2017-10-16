@@ -21,6 +21,6 @@ def weather(bot, update):
         obs = owm.weather_at_place(trans)
         w = obs.get_weather()
         update.message.reply_text(location+'的天氣\n'+'溫度：'+str(w.get_temperature(unit='celsius')['temp'])+
-                '   濕度：'+str(w.get_humidity()))
+                '   濕度：'+str(w.get_humidity())+'   天氣狀況：'+str(w.get_status()))
     except:
         update.message.reply_text('Location fucking not found')

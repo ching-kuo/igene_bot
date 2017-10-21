@@ -12,10 +12,6 @@ def sister(bot, update):
     logger.info("sister called")
     update.message.reply_text(u"醒醒吧你沒有妹妹")
 
-def python_better(bot, update):
-    logger.info("python or js called")
-    update.message.reply_text(u"Python is better than Javascript")
-
 def wuyiulin(bot, update):
     logger.info("wuyiulin is tagged")
     update.message.reply_text("時薪133的元智亞泥魚池龍破壞包莖劍士肥宅管理員")

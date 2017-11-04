@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 import logging
+import random
+import os
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def girlfriend(bot, update):
     logger.info("girlfriend called")
-    update.message.reply_text(u"醒醒吧你沒有女友")
+    pic = random.choice(os.listdir('photo'))
+    photo = open('photo/'+pic, 'rb')
+    update.message.reply_text("這是我女友 沒看過的話讓你看看")
+    update.message.reply_photo(photo)
 
 def sister(bot, update):
     logger.info("sister called")

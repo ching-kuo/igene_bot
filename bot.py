@@ -19,7 +19,7 @@ def start(bot, update):
 
 def main():
     cfg = ConfigParser()
-    cfg.read('config')
+    cfg.read('/etc/igene_bot/config')
     token = cfg.get('auth', 'token')
     updater = Updater(token)
     dp = updater.dispatcher

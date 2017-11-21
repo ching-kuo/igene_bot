@@ -1,24 +1,23 @@
 # -*- coding: utf-8 -*-
-
-from telegram.ext import Updater
-from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, RegexHandler,
-                          ConversationHandler)
-from bs4 import BeautifulSoup
-from configparser import ConfigParser
-from models import *
 import logging
-import re
-import requests
+from configparser import ConfigParser
+from telegram.ext import (Updater, CommandHandler, RegexHandler)
+from models import *
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', \
+        level=logging.INFO)
 logger = logging.getLogger(__name__)
-
+cfg = ConfigParser()
 
 def start(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text="I'm a bot, please talk to me!")
 
+"""
+All handlers added in main
+"""
+
+
 def main():
-    cfg = ConfigParser()
     cfg.read('/etc/igene_bot/config')
     token = cfg.get('auth', 'token')
     updater = Updater(token)

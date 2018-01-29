@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 def images(bot, update):
     cfg = ConfigParser()
-    cfg.read('config')
+    cfg.read('/etc/igene_bot/config')
     api_key = cfg.get('auth', 'flickr_api_key')
     secret = cfg.get('auth', 'flickr_secret')
     search = update.message.text

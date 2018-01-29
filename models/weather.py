@@ -7,7 +7,7 @@ import re
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 cfg = ConfigParser()
-cfg.read('config')
+cfg.read('/etc/igene_bot/config')
 api_key = cfg.get('auth', 'owm_api_key')
 
 def weather(bot, update):

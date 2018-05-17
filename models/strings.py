@@ -14,8 +14,8 @@ logger = logging.getLogger(__name__)
 def girlfriend(bot, update):
     """Triggered when girlfriend was sent"""
     logger.info("girlfriend called")
-    pic = random.choice(os.listdir('photo'))
-    photo = open('photo/'+pic, 'rb')
+    pic = random.choice(os.listdir('/photo'))
+    photo = open('/photo/'+pic, 'rb')
     update.message.reply_text("這是我女友 沒看過的話讓你看看")
     update.message.reply_photo(photo)
 

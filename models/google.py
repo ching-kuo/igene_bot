@@ -24,8 +24,8 @@ def google(bot, update):
     url = 'https://www.google.com/search?q=' + quote(search)
     res = requests.get(url, headers=headers)
     soup = BeautifulSoup(res.text, "html.parser")
-    text = soup.find('h3', {'class': 'r'}).find('a').text
-    result = soup.find('h3', {'class': 'r'}).find('a').attrs['href']
+    text = soup.find('h3', attrs={'class': 'LC20lb'}).text
+    result = soup.find(attrs = {'class': 'r'}).find('a').attrs['href']
     result = urllib.parse.unquote(result)
     if_http_start_regex = re.compile('^http')
     if_http_start = if_http_start_regex.match(str(result))
